@@ -6,132 +6,56 @@
 /*   By: MP9 <mikjimen@student.42heilbronn.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/29 18:51:52 by MP9               #+#    #+#             */
-/*   Updated: 2025/08/29 23:53:10 by MP9              ###   ########.fr       */
+/*   Updated: 2025/08/31 21:27:41 by MP9              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-// int	*assign_stack(int *stack_a, char **argv)
+// int	*create_stacka(char **bigstr)
 // {
-// 	int	i;
 
-// 	i = 1;
-// 	while (argv[argi] != NULL)
-// 	{
-// 		stack_a[i - 1] = ft_atoli(argv[i]);
-// 		if (ft_atoli(argv[i]) == 0)
-// 			return (NULL);
-// 		i++;
-// 	}
-// 	stack_a[i] = '\0';
-// 	return (stack_a);
 // }
 
-int	*create_stacks(char **argv)
+char	**error_handle(char **argv, int argc)
 {
-	int	*stack;
-	int	argi;
-	int	argi2;
-	int	counter;
+	char	**bigstr;
+	char	*input;
 
-	argi = 1;
-	argi2 = 0;
-	counter = 0;
-	while (argv[argi] != NULL)
+	input = take_input(argv, argc);
+	bigstr = ft_split(input, ' ');
+	check_dup(bigstr);
+	return (bigstr);
+}
+
+char	**error_handle2(char **argv, int argc)
+{
+	int		bi;
+	int		si;
+	char	**bigstr;
+
+	bi = 0;
+	si = 0;
+	bigstr = error_handle(argv, argc);
+	while (bigstr[bi] != NULL)
 	{
-		while (argv[argi][argi2] != '\0')
+		while (bigstr[bi][si])
 		{
-			if (argv[argi][argi2] == ' ')
-				counter++;
-			argi2++;
+			if ((bigstr[bi][si] < '0' && bigstr[bi][si] > '9')
+				&& bigstr[bi][si] != ' ')
+			{
+				ft_printf("%s", ERROR_MSG);
+				free(bigstr);
+				exit (0);
+			}
+			si++;
 		}
-		argi++;
+		bi++;
 	}
-	stack = (int *)malloc(sizeof(char) * (argi2 - counter + 1));
-	if (!stack)
-		return (NULL);
-	return (stack);
+	return (bigstr);
 }
 
-size_t	ft_strlen(const char *s)
-{
-	size_t	i;
-
-	i = 0;
-	while (s[i])
-		i++;
-	return (i);
-}
-
-char	*ft_strjoin(char const *s1, char const *s2)
-{
-	char	*joinstr;
-	size_t	len;
-	size_t	i;
-	size_t	i2;
-
-	i = 0;
-	i2 = 0;
-	len = (ft_strlen(s1) + ft_strlen(s2));
-	joinstr = (char *)malloc(sizeof(char) * (len + 1));
-	if (!joinstr)
-		return (NULL);
-	while (s1[i] != '\0')
-	{
-		joinstr[i] = s1[i];
-		i++;
-	}
-	joinstr[i++] = ' ';
-	while (s2[i2] != '\0')
-	{
-		joinstr[i] = s2[i2];
-		i++;
-		i2++;
-	}
-	joinstr[i] = '\0';
-	return (joinstr);
-}
-
-size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
-{
-	size_t	i;
-
-	i = 0;
-	if (dstsize <= 0)
-		return (ft_strlen(src));
-	while (src[i] != '\0' && i < dstsize - 1)
-	{
-		dst[i] = src[i];
-		i++;
-	}
-	dst[i] = '\0';
-	return (ft_strlen(src));
-}
-// 	int	argi;
-// 	int	argi2;
-// 	int	counter;
-
-// 	argi = 1;
-// 	argi2 = 0;
-// 	counter = 0;
-// 	while (argv[argi] != NULL)
-// 	{
-// 		while (argv[argi][argi2] != '\0')
-// 		{
-// 			if (argv[argi][argi2] == ' ')
-// 				counter++;
-// 			argi2++;
-// 		}
-// 		argi++;
-// 	}
-// 	stack = (int *)malloc(sizeof(char) * (argi2 - counter + 1));
-// 	if (!stack)
-// 		return (NULL);
-// 	return (stack);
-// }
-
-char	*input_parsing(char **argv, int argc)
+char	*take_input(char **argv, int argc)
 {
 	int		argi;
 	char	*numbers;
@@ -139,12 +63,12 @@ char	*input_parsing(char **argv, int argc)
 	argi = 1;
 	if (argc >= 3)
 	{
-		numbers = ft_strjoin(argv[argi], argv[argi + 1]);
+		numbers = ft_inputjoin(argv[argi], argv[argi + 1]);
 		argi++;
 		while (argv[argi + 1] != NULL)
 		{
 			argi++;
-			numbers = ft_strjoin(numbers, argv[argi]);
+			numbers = ft_inputjoin(numbers, argv[argi]);
 		}
 	}
 	else

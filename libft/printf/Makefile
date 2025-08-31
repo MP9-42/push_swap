@@ -6,7 +6,7 @@
 #    By: MP9 <mikjimen@student.42heilbronn.de>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/07/26 13:40:47 by MP9               #+#    #+#              #
-#    Updated: 2025/08/29 20:36:43 by MP9              ###   ########.fr        #
+#    Updated: 2025/08/31 17:00:08 by MP9              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ CFLAGS = -Wall -Wextra -Werror -I./includes/
 AR = ar rcs
 RM = rm -f
 
-SRCS = srcs/ft_printf.c srcs/ft_printf_utils.c srcs/ft_putstr.c srcs/ft_putnbr.c srcs/ft_putchar.c
+SRCS = srcs/ft_printf.c srcs/ft_printf_utils.c srcs/ft_putstr.c srcs/ft_putnbr.c srcs/ft_putchar.c \
 
 OBJS = $(SRCS:.c=.o)
 

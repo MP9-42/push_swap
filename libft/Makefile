@@ -6,7 +6,7 @@
 #    By: MP9 <mikjimen@student.42heilbronn.de>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/07/10 13:08:28 by MP9               #+#    #+#              #
-#    Updated: 2025/08/29 20:42:57 by MP9              ###   ########.fr        #
+#    Updated: 2025/08/31 17:13:35 by MP9              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,20 +23,26 @@ SRCS = ft_isalpha.c ft_isdigit.c ft_isalnum.c ft_isascii.c ft_isprint.c \
 		ft_putstr_fd.c ft_putchar_fd.c ft_striteri.c ft_strmapi.c ft_itoa.c \
 		ft_strtrim.c ft_split.c ft_strjoin.c ft_substr.c \
 
-PRINTF_SRCS = ft_printf.c ft_printf_utils ft_putchar.c ft_putnbr.c ft_putstr.c \
-
-OBJS = $(addprefix $(OBJ_DIR)/, $(SRCS:.c=.o))
-BONUSOBJS = $(addprefix $(OBJ_DIR)/, $(BONUSSRCS:.c=.o))
-PRINTF_OBJS = $(addprefix $(OBJ_DIR)/, $(PRINTF_SRCS:.c =.o))
-
 BONUSSRCS = ft_lstiter_bonus.c ft_lstnew_bonus.c ft_lstsize_bonus.c ft_lstlast_bonus.c \
 			ft_lstadd_back_bonus.c ft_lstadd_front_bonus.c ft_lstdelone_bonus.c \
 			ft_lstclear_bonus.c ft_lstmap_bonus.c \
+
+PRINTF_SRCS = ft_printf.c ft_printf_utils.c ft_putchar.c ft_putnbr.c ft_putstr.c \
+
+OBJS = $(addprefix $(OBJ_DIR)/, $(SRCS:.c=.o))
+BONUSOBJS = $(addprefix $(OBJ_DIR)/, $(BONUSSRCS:.c=.o))
+PRINTF_OBJS = $(addprefix $(OBJ_DIR)/, $(PRINTF_SRCS:.c=.o))
 
 CC = cc
 CFLAGS = -Wall -Wextra -Werror -Iincludes -I$(PRINTF_DIR)
 
 all : $(NAME)
+
+$(NAME): $(OBJS) $(PRINTF_OBJS)
+		ar rcs $(NAME) $(OBJS) $(PRINTF_OBJS)
+
+bonus:  $(OBJS) $(BONUSOBJS) $(PRINTF_OBJS)
+		ar rcs $(NAME) $(OBJS) $(BONUSOBJS) $(PRINTF_OBJS)
 
 $(OBJ_DIR)/%.o: %.c
 	@mkdir -p $(dir $@)
@@ -46,11 +52,6 @@ $(OBJ_DIR)/%.o: $(PRINTF_DIR)/%.c
 	@mkdir -p $(dir $@)
 	$(CC) $(CFLAGS) -c $< -o $@
 
-$(NAME): $(OBJS) $(PRINTF_OBJS)
-		ar rcs $(NAME) $(OBJS) $(PRINTF_OBJS)
-
-bonus:  $(OBJS) $(BONUSOBJS) $(PRINT_OBJS)
-		ar rcs $(NAME) $(OBJS) $(BONUSOBJS)
 clean:
 		rm -rf $(OBJ_DIR)
 		@echo "library and object files cleaned." 
