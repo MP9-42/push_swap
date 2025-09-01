@@ -6,7 +6,7 @@
 /*   By: MP9 <mikjimen@student.42heilbronn.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/29 18:51:52 by MP9               #+#    #+#             */
-/*   Updated: 2025/09/01 16:53:27 by MP9              ###   ########.fr       */
+/*   Updated: 2025/09/01 18:42:10 by MP9              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ int	*create_stacka(char **bigstr)
 		stack_a[i] = ft_atoli(bigstr[i]);
 		i++;
 	}
+	stack_a[i] = '\0';
 	return (stack_a);
 }
 
@@ -76,9 +77,7 @@ char	*take_input(char **argv, int argc)
 	char	*numbers;
 
 	argi = 1;
-	if (argc <= 1)
-		return (ERROR_MSG);
-	else
+	if (argc >= 3)
 	{
 		numbers = ft_inputjoin(argv[argi], argv[argi + 1]);
 		argi++;
@@ -88,19 +87,36 @@ char	*take_input(char **argv, int argc)
 			numbers = ft_inputjoin(numbers, argv[argi]);
 		}
 	}
+	else
+	{
+		numbers = (char *)malloc(sizeof(char) * ft_strlen(argv[argi] + 1));
+		if (!numbers)
+			return (NULL);
+		ft_strlcpy(numbers, argv[argi], ft_strlen(argv[argi]) + 1);
+	}
 	return (numbers);
 }
 
-void	stackerror(char **matrix, int *stack_a, int *stack_b)
+int	*stackerror(char **matrix, int *stack_a)
 {
+	int	i;
+	int	*stack_b;
+
 	if (!stack_a)
 	{
 		free_matrix(matrix);
 		ft_printf("%s", ERROR_MSG);
+		exit(0);
 	}
+	i = ft_stacklen(stack_a);
+	stack_b = (int *)malloc(sizeof(int) * (i + 1));
 	if (!stack_b)
 	{
+		free_matrix(matrix);
 		free(stack_a);
 		ft_printf("%s", ERROR_MSG);
+		exit(0);
 	}
+	else
+		return (stack_b);
 }
