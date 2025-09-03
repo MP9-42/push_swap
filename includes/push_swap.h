@@ -6,7 +6,7 @@
 /*   By: MP9 <mikjimen@student.42heilbronn.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/23 21:25:25 by MP9               #+#    #+#             */
-/*   Updated: 2025/09/01 18:42:26 by MP9              ###   ########.fr       */
+/*   Updated: 2025/09/03 07:59:08 by MP9              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,20 @@
 #  define ERROR_MSG "Error\n"
 # endif
 
+typedef struct s_stack
+{
+	int				index;
+	int				stack_a;
+	int				stack_b;
+	struct s_stack	*next;
+}					t_stack;
+
+typedef struct s_struct
+{
+	t_stack			*head;
+	int				size;
+}					t_struct;
+
 void	free_matrix(char **matrix);
 void	*ft_memmove(void *dst, const void *src, size_t len);
 long	ft_atoli(char *str);
@@ -34,5 +48,7 @@ int		*create_stacka(char **bigstr);
 int		*stackerror(char **matrix, int *stack_a);
 int		ft_stacklen(int *stack);
 char	**check_dup(char **matrix);
+
+void	init_list(t_struct *stacklist, int *stack_a, int *stack_b);
 
 #endif

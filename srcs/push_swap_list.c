@@ -1,35 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   push_swap_list.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: MP9 <mikjimen@student.42heilbronn.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/23 21:25:11 by MP9               #+#    #+#             */
-/*   Updated: 2025/09/03 08:07:36 by MP9              ###   ########.fr       */
+/*   Created: 2025/09/03 05:43:19 by MP9               #+#    #+#             */
+/*   Updated: 2025/09/03 08:03:09 by MP9              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-int	main(int argc, char **argv)
+void	init_list(t_struct *stacklist, int *stack_a, int *stack_b)
 {
-	char		**numbers;
-	int			*stack_a;
-	int			*stack_b;
-	t_struct	stacklist;
-	int			i;
-
+	t_stack	*temp;
+	int		size;
+	int		i;
+	
 	i = 0;
-	numbers = error_handle(argv, argc);
-	stack_a = create_stacka(numbers);
-	stack_b = stackerror(numbers, stack_a);
-	init_list(&stacklist, stack_a, stack_b);
-	while (stack_a[i] != '\0')
+	size = ft_stacklen(stack_a);
+	stacklist->size = size; 
+	temp = stacklist->head;
+	while (temp)
 	{
-		ft_printf("stack_a: %d\n", stack_a[i]);
-		ft_printf("stack_b: %d\n", stack_b[i]);
+		temp ->index = (i);
+		temp->stack_a = stack_a[i];
+		temp->stack_b = stack_b[i];
+		temp = temp->next;
 		i++;
 	}
-	return (0);
 }
+

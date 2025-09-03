@@ -6,13 +6,13 @@
 #    By: MP9 <mikjimen@student.42heilbronn.de>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/08/23 21:24:53 by MP9               #+#    #+#              #
-#    Updated: 2025/08/31 18:00:08 by MP9              ###   ########.fr        #
+#    Updated: 2025/09/03 08:00:15 by MP9              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = push_swap
 OBJ_DIR = objs
-SRCFILES = srcs/push_swap.c srcs/push_swap_utils.c srcs/push_swap_parsing.c
+SRCFILES = srcs/push_swap.c srcs/push_swap_utils.c srcs/push_swap_parsing.c srcs/push_swap_list.c
 OBJS = $(SRCFILES:srcs/%.c=$(OBJ_DIR)/%.o)
 CC = cc
 CFLAGS = -Wall -Wextra -Werror -I./includes/ -I./libft/includes/

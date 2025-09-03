@@ -1,35 +1,14 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   push_swap_utils2.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: MP9 <mikjimen@student.42heilbronn.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/23 21:25:11 by MP9               #+#    #+#             */
-/*   Updated: 2025/09/03 08:07:36 by MP9              ###   ########.fr       */
+/*   Created: 2025/09/03 04:07:51 by MP9               #+#    #+#             */
+/*   Updated: 2025/09/03 04:09:18 by MP9              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-int	main(int argc, char **argv)
-{
-	char		**numbers;
-	int			*stack_a;
-	int			*stack_b;
-	t_struct	stacklist;
-	int			i;
-
-	i = 0;
-	numbers = error_handle(argv, argc);
-	stack_a = create_stacka(numbers);
-	stack_b = stackerror(numbers, stack_a);
-	init_list(&stacklist, stack_a, stack_b);
-	while (stack_a[i] != '\0')
-	{
-		ft_printf("stack_a: %d\n", stack_a[i]);
-		ft_printf("stack_b: %d\n", stack_b[i]);
-		i++;
-	}
-	return (0);
-}
