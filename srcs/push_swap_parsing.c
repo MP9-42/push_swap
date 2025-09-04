@@ -6,13 +6,13 @@
 /*   By: MP9 <mikjimen@student.42heilbronn.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/29 18:51:52 by MP9               #+#    #+#             */
-/*   Updated: 2025/09/01 18:42:10 by MP9              ###   ########.fr       */
+/*   Updated: 2025/09/04 19:59:09 by MP9              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-int	*create_stacka(char **bigstr)
+int	*get_nums(char **bigstr)
 {
 	int	*stack_a;
 	int	i;
@@ -97,26 +97,14 @@ char	*take_input(char **argv, int argc)
 	return (numbers);
 }
 
-int	*stackerror(char **matrix, int *stack_a)
+int	*stackerror(char **matrix, int *numbers)
 {
-	int	i;
-	int	*stack_b;
-
-	if (!stack_a)
+	if (numbers)
 	{
 		free_matrix(matrix);
-		ft_printf("%s", ERROR_MSG);
-		exit(0);
-	}
-	i = ft_stacklen(stack_a);
-	stack_b = (int *)malloc(sizeof(int) * (i + 1));
-	if (!stack_b)
-	{
-		free_matrix(matrix);
-		free(stack_a);
 		ft_printf("%s", ERROR_MSG);
 		exit(0);
 	}
 	else
-		return (stack_b);
+		return (numbers);
 }

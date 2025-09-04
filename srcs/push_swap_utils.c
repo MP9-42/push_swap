@@ -6,20 +6,20 @@
 /*   By: MP9 <mikjimen@student.42heilbronn.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/25 20:31:24 by MP9               #+#    #+#             */
-/*   Updated: 2025/09/01 16:41:59 by MP9              ###   ########.fr       */
+/*   Updated: 2025/09/04 19:26:31 by MP9              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-int	ft_stacklen(int *stack)
+int	ft_stacklen(int *numbers)
 {
 	int	i;
 
-	if (!stack)
+	if (!numbers)
 		return (0);
 	i = 0;
-	while (stack[i] != '\0')
+	while (numbers[i] != '\0')
 		i++;
 	return (i);
 }

@@ -6,29 +6,29 @@
 /*   By: MP9 <mikjimen@student.42heilbronn.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/03 05:43:19 by MP9               #+#    #+#             */
-/*   Updated: 2025/09/03 08:03:09 by MP9              ###   ########.fr       */
+/*   Updated: 2025/09/04 20:21:12 by MP9              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-void	init_list(t_struct *stacklist, int *stack_a, int *stack_b)
+t_stack	create_stack(t_stack *s_a, t_stack *s_b, int *nums)
 {
-	t_stack	*temp;
-	int		size;
+	int		len;
 	int		i;
-	
+	t_node	*node;
+
 	i = 0;
-	size = ft_stacklen(stack_a);
-	stacklist->size = size; 
-	temp = stacklist->head;
-	while (temp)
+	len = ft_stacklen(s_a);
+	s_a->size = len;
+	node = s_a->head;
+	while (node)
 	{
-		temp ->index = (i);
-		temp->stack_a = stack_a[i];
-		temp->stack_b = stack_b[i];
-		temp = temp->next;
+		node->index = i;
+		node->number = nums[i];
+		node = node->next;
 		i++;
 	}
+	return (*s_a);
 }
 
