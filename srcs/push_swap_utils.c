@@ -6,7 +6,7 @@
 /*   By: MP9 <mikjimen@student.42heilbronn.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/25 20:31:24 by MP9               #+#    #+#             */
-/*   Updated: 2025/09/04 19:26:31 by MP9              ###   ########.fr       */
+/*   Updated: 2025/09/08 17:14:22 by MP9              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,9 +93,8 @@ char	**check_dup(char **matrix)
 		{
 			if (ft_strncmp(matrix[i], matrix[i2], 12) == 0)
 			{
-				ft_printf("%s", ERROR_MSG);
 				free_matrix(matrix);
-				exit (0);
+				exit(ft_printf("%s", ERROR_MSG));
 			}
 			i2++;
 		}

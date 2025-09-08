@@ -6,7 +6,7 @@
 /*   By: MP9 <mikjimen@student.42heilbronn.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/29 18:51:52 by MP9               #+#    #+#             */
-/*   Updated: 2025/09/04 19:59:09 by MP9              ###   ########.fr       */
+/*   Updated: 2025/09/08 17:14:04 by MP9              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,16 +33,20 @@ int	*get_nums(char **bigstr)
 	return (stack_a);
 }
 
-char	**error_handle(char **argv, int argc)
+int	*error_handle(char **argv, int argc)
 {
 	char	**bigstr;
 	char	*input;
+	int		*numbers;
 
 	input = take_input(argv, argc);
 	bigstr = ft_split(input, ' ');
-	check_dup(bigstr);
-	error_handle2(bigstr);
-	return (bigstr);
+	bigstr = check_dup(bigstr);
+	bigstr = error_handle2(bigstr);
+	numbers = get_nums(bigstr);
+	free(input);
+	free_matrix(bigstr);
+	return (numbers);
 }
 
 char	**error_handle2(char **bigstr)
@@ -60,9 +64,8 @@ char	**error_handle2(char **bigstr)
 			if (!(bigstr[bi][si] >= '0' && bigstr[bi][si] <= '9')
 				&& bigstr[bi][si] != '-' && bigstr[bi][si] != '+')
 			{
-				ft_printf("%s", ERROR_MSG);
 				free_matrix(bigstr);
-				exit (0);
+				exit (ft_printf("%s", ERROR_MSG));
 			}
 			si++;
 		}
@@ -87,7 +90,7 @@ char	*take_input(char **argv, int argc)
 			numbers = ft_inputjoin(numbers, argv[argi]);
 		}
 	}
-	else
+	else if (argc == 2)
 	{
 		numbers = (char *)malloc(sizeof(char) * ft_strlen(argv[argi] + 1));
 		if (!numbers)
@@ -99,11 +102,10 @@ char	*take_input(char **argv, int argc)
 
 int	*stackerror(char **matrix, int *numbers)
 {
-	if (numbers)
+	if (!numbers)
 	{
 		free_matrix(matrix);
-		ft_printf("%s", ERROR_MSG);
-		exit(0);
+		exit(ft_printf("%s", ERROR_MSG));
 	}
 	else
 		return (numbers);

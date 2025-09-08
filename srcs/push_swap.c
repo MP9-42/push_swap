@@ -6,7 +6,7 @@
 /*   By: MP9 <mikjimen@student.42heilbronn.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/23 21:25:11 by MP9               #+#    #+#             */
-/*   Updated: 2025/09/04 20:33:27 by MP9              ###   ########.fr       */
+/*   Updated: 2025/09/08 17:16:48 by MP9              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,19 +15,22 @@
 int	main(int argc, char **argv)
 {
 	int			*numbers;
-	t_stack		stack_a;
-	t_stack		stack_b;
-	int			i;
+	t_stack		*stack_a;
+	t_stack		*stack_b;
+	t_node		*nums;
 
-	i = 0;
-	argv = error_handle(argv, argc);
-	numbers = get_nums(argv);
+	stack_b = NULL;
+	stack_a = NULL;
+	numbers = error_handle(argv, argc);
 	numbers = stackerror(argv, numbers);
-	stack_a = init_list(&stack_a, &stack_b, numbers);
-	stack_a->head;
-	while ()
+	stack_a = create_stack_a(numbers);
+	stack_b = create_stack_b(stack_a);
+	nums = stack_a->head;
+	while (nums)
 	{
-		
+		ft_printf("stack_a number value: %i\n", nums->number);
+		ft_printf("stack_a number value: %i\n", nums->number);
+		nums = nums->next;
 	}
 	return (0);
 }
