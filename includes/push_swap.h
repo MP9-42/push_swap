@@ -6,7 +6,7 @@
 /*   By: MP9 <mikjimen@student.42heilbronn.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/23 21:25:25 by MP9               #+#    #+#             */
-/*   Updated: 2025/09/08 17:16:57 by MP9              ###   ########.fr       */
+/*   Updated: 2025/09/09 22:53:15 by MP9              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,18 +24,6 @@
 #  define ERROR_MSG "Error\n"
 # endif
 
-typedef struct s_node
-{
-	int				number;
-	int				index;
-	struct s_node	*next;
-}					t_node;
-
-typedef struct s_stack
-{
-	t_node			*head;
-	int				size;
-}					t_stack;
 
 //utils
 void		free_matrix(char **matrix);
@@ -46,10 +34,8 @@ int			ft_stacklen(int *stack);
 char		**check_dup(char **matrix);
 
 //stack creation
-t_stack		*create_stack_a(int *nums);
-t_stack		*create_stack_b(t_stack *nums);
-t_node		*create_nodes(int *nums, t_node *head);
-t_node		*allocate_node(t_node *why, int *nums);
+int			*create_stacks(int *stack_a);
+int			*create_stack_b(int *nums);
 
 //parsing
 int			*error_handle(char **argv, int argc);
@@ -57,5 +43,12 @@ char		**error_handle2(char **bigstr);
 char		*take_input(char **argv, int argc);
 int			*get_nums(char **bigstr);
 int			*stackerror(char **matrix, int *stack_a);
+
+//algorithm
+int			*rrotate(int *stack, int len);
+int			*asort(int *stack_a, int len);
+int 		*bsort(int *stack_a, int *stack_b, int len);
+int 		*pushnrotate(int *stack_a, int *stack_b, int len);
+int 		*rotate(int *stack, int len);
 
 #endif
