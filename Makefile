@@ -6,14 +6,14 @@
 #    By: MP9 <mikjimen@student.42heilbronn.de>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/08/23 21:24:53 by MP9               #+#    #+#              #
-#    Updated: 2025/09/09 19:39:46 by MP9              ###   ########.fr        #
+#    Updated: 2025/09/10 22:28:47 by MP9              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = push_swap
 OBJ_DIR = objs
-SRCFILES =	srcs/push_swap.c srcs/push_swap_utils.c srcs/push_swap_parsing.c srcs/push_swap_sort1.c \
-			srcs/push_swap_utils2.c srcs/push_swap_rotate.c \
+SRCFILES =	srcs/push_swap.c srcs/push_swap_utils.c srcs/push_swap_parsing.c srcs/push_swap_opperations.c \
+			srcs/push_swap_utils2.c  \
 			
 OBJS = $(SRCFILES:srcs/%.c=$(OBJ_DIR)/%.o)
 CC = cc

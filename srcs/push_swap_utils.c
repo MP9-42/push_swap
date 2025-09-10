@@ -6,7 +6,7 @@
 /*   By: MP9 <mikjimen@student.42heilbronn.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/25 20:31:24 by MP9               #+#    #+#             */
-/*   Updated: 2025/09/08 17:14:22 by MP9              ###   ########.fr       */
+/*   Updated: 2025/09/10 14:55:58 by MP9              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ int	ft_stacklen(int *numbers)
 	if (!numbers)
 		return (0);
 	i = 0;
+	if (numbers[i] == '\0')
+		i++;
 	while (numbers[i] != '\0')
 		i++;
 	return (i);
