@@ -6,13 +6,13 @@
 /*   By: MP9 <mikjimen@student.42heilbronn.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/25 20:31:24 by MP9               #+#    #+#             */
-/*   Updated: 2025/09/10 14:55:58 by MP9              ###   ########.fr       */
+/*   Updated: 2025/09/11 00:10:43 by MP9              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-int	ft_stacklen(int *numbers)
+int	ft_stack_oldlen(int *numbers)
 {
 	int	i;
 

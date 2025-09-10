@@ -6,16 +6,16 @@
 /*   By: MP9 <mikjimen@student.42heilbronn.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/09 17:40:41 by MP9               #+#    #+#             */
-/*   Updated: 2025/09/10 22:31:43 by MP9              ###   ########.fr       */
+/*   Updated: 2025/09/11 00:10:43 by MP9              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-t_stack	*rrotate(t_stack *stack_a)
+t_stack_old	*rrotate(t_stack_old *stack_a)
 {
-	t_stack	*prev;
-	t_stack	*last;
+	t_stack_old	*prev;
+	t_stack_old	*last;
 
 	if (!stack_a || !stack_a->next)
 		return (stack_a);

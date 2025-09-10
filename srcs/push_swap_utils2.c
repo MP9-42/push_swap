@@ -6,7 +6,7 @@
 /*   By: MP9 <mikjimen@student.42heilbronn.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/03 04:07:51 by MP9               #+#    #+#             */
-/*   Updated: 2025/09/10 21:58:46 by MP9              ###   ########.fr       */
+/*   Updated: 2025/09/11 00:10:43 by MP9              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,19 +29,19 @@ t_sort	*create_stacks(int *numbers)
 	return (heads);
 }
 
-t_stack	*stack_allocate(int *numbers)
+t_stack_old	*stack_allocate(int *numbers)
 {
-	t_stack	*head;
-	t_stack	*stack;
+	t_stack_old	*head;
+	t_stack_old	*stack;
 	int		i;
 
-	head = (t_stack *)malloc(sizeof(t_stack));
+	head = (t_stack_old *)malloc(sizeof(t_stack_old));
 	stack = head;
 	stack->next = NULL;
 	i = 1;
 	while (numbers[i])
 	{
-		stack->next = (t_stack *)malloc(sizeof(t_stack));
+		stack->next = (t_stack_old *)malloc(sizeof(t_stack_old));
 		if (!stack->next)
 		{
 			free(numbers);
@@ -54,7 +54,7 @@ t_stack	*stack_allocate(int *numbers)
 	return (head);
 }
 
-t_stack	*assign_values(t_stack *stack, int *numbers)
+t_stack_old	*assign_values(t_stack_old *stack, int *numbers)
 {
 	int	i;
 

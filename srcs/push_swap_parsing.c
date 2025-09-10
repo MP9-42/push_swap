@@ -6,7 +6,7 @@
 /*   By: MP9 <mikjimen@student.42heilbronn.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/29 18:51:52 by MP9               #+#    #+#             */
-/*   Updated: 2025/09/08 17:14:04 by MP9              ###   ########.fr       */
+/*   Updated: 2025/09/11 00:06:03 by MP9              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ int	*get_nums(char **bigstr)
 	i = 0;
 	while (bigstr[i] != NULL)
 		i++;
+	printf("size_array = %d\n", i);
 	stack_a = (int *)malloc(sizeof(int) * i + 1);
 	if (!stack_a)
 		return (NULL);
@@ -30,6 +31,8 @@ int	*get_nums(char **bigstr)
 		i++;
 	}
 	stack_a[i] = '\0';
+
+	print_array(stack_a , "stack_a array");
 	return (stack_a);
 }
 
@@ -46,6 +49,7 @@ int	*error_handle(char **argv, int argc)
 	numbers = get_nums(bigstr);
 	free(input);
 	free_matrix(bigstr);
+	print_array(numbers , "numbers");
 	return (numbers);
 }
 
@@ -80,7 +84,10 @@ char	*take_input(char **argv, int argc)
 	char	*numbers;
 
 	argi = 1;
-	if (argc >= 3)
+	numbers = NULL;
+	if (argc <= 1)
+		exit(ft_printf("%s", ERROR_MSG));
+	else if (argc >= 3)
 	{
 		numbers = ft_inputjoin(argv[argi], argv[argi + 1]);
 		argi++;
@@ -108,5 +115,9 @@ int	*stackerror(char **matrix, int *numbers)
 		exit(ft_printf("%s", ERROR_MSG));
 	}
 	else
+	{
+		
+		print_array(numbers , "numbers2");
 		return (numbers);
+	}
 }

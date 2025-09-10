@@ -6,7 +6,7 @@
 /*   By: MP9 <mikjimen@student.42heilbronn.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/23 22:14:26 by MP9               #+#    #+#             */
-/*   Updated: 2025/09/10 22:32:38 by MP9              ###   ########.fr       */
+/*   Updated: 2025/09/11 00:10:43 by MP9              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@
 // {
 // 	int	len;
 
-// 	len = ft_stacklen(stack_a);
-// 	while (ft_stacklen(stack_b) != len)
+// 	len = ft_stack_oldlen(stack_a);
+// 	while (ft_stack_oldlen(stack_b) != len)
 // 	{
 
 // 	}
