@@ -6,64 +6,36 @@
 /*   By: MP9 <mikjimen@student.42heilbronn.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/03 04:07:51 by MP9               #+#    #+#             */
-/*   Updated: 2025/09/11 00:10:43 by MP9              ###   ########.fr       */
+/*   Updated: 2025/09/12 19:34:13 by MP9              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-t_sort	*create_stacks(int *numbers)
+void	print_stack(t_stack *stack)
 {
-	t_sort		*heads;
-
-	heads = NULL;
-	heads = (t_sort *)malloc(sizeof(t_sort));
-	if (!heads)
-	{
-		free(numbers);
-		return (NULL);
-	}
-	heads->stack_a = stack_allocate(numbers);
-	heads->stack_b = stack_allocate(numbers);
-	heads->stack_a = assign_values(heads->stack_a, numbers);
-	return (heads);
-}
-
-t_stack_old	*stack_allocate(int *numbers)
-{
-	t_stack_old	*head;
-	t_stack_old	*stack;
 	int		i;
+	t_node	*current;
 
-	head = (t_stack_old *)malloc(sizeof(t_stack_old));
-	stack = head;
-	stack->next = NULL;
-	i = 1;
-	while (numbers[i])
+	current = stack->head;
+	i = 0;
+	while (i < stack->size)
 	{
-		stack->next = (t_stack_old *)malloc(sizeof(t_stack_old));
-		if (!stack->next)
-		{
-			free(numbers);
-			return (NULL);
-		}
-		stack = stack->next;
-		stack->next = NULL;
+		ft_printf("node [%d]: value = (%d),", i, current->value);
+		ft_printf("index = (%d)\n", current->index);
+		current = current->next;
 		i++;
 	}
-	return (head);
 }
 
-t_stack_old	*assign_values(t_stack_old *stack, int *numbers)
+void	print_array(int *array_num, char *name_array)
 {
 	int	i;
 
 	i = 0;
-	while (numbers[i] != '\0' && stack != NULL)
+	while (array_num[i] != '\0')
 	{
-		stack->value = numbers[i];
+		ft_printf("%s[%d]: %d\n", name_array, i, array_num[i]);
 		i++;
-		stack = stack->next;
 	}
-	return (stack);
 }

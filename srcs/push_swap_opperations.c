@@ -6,56 +6,67 @@
 /*   By: MP9 <mikjimen@student.42heilbronn.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/09 17:40:41 by MP9               #+#    #+#             */
-/*   Updated: 2025/09/11 00:10:43 by MP9              ###   ########.fr       */
+/*   Updated: 2025/09/12 19:32:51 by MP9              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-t_stack_old	*rrotate(t_stack_old *stack_a)
+void	rotate(t_stack *stack)
 {
-	t_stack_old	*prev;
-	t_stack_old	*last;
-
-	if (!stack_a || !stack_a->next)
-		return (stack_a);
-	prev = NULL;
-	last = stack_a;
-	while (last->next)
-	{
-		prev = last;
-		last = last->next;
-	}
-	prev->next = NULL;
-	last->next = stack_a;
-	return (last);
+	if (!stack || stack->size < 2)
+		return ;
+	stack->head = stack->head->next;
 }
 
-// int	*rotate(int *stack, int len)
-// {
-// 	int	i;
-// 	int	value;
+void	rrotate(t_stack *stack)
+{
+	if (!stack || stack->size < 2)
+		return ;
+	stack->head = stack->tail;
+}
 
-// 	i = 0;
-// 	value = stack[0];
-// 	while (i < len - 1)
-// 	{
-// 		stack[i] = stack[i + 1];
-// 		i++;
-// 	}
-// 	stack[len - 1] = value;
-// 	return (stack);
-// }
+void	swap(t_stack *stack)
+{
+	t_node	*first;
+	t_node	*second;
 
-// int	*pushnrotate(int *stack_a, int *stack_b, int len)
-// {
-// 	stack_b[0] = stack_a[0];
-// 	stack_a[0] = '\0';
-// 	ft_printf("pb && stack_b: %i\n", stack_b[0]);
-// 	stack_a = rotate(stack_a, len);
-// 	ft_printf("ra && stack_a: %i\n", stack_a[0]);
-// 	stack_b = rrotate(stack_b, len);
-// 	ft_printf("rrb && stack_b: %i\n", stack_b[0]);
-// 	return (stack_b);
-// }
+	if (!stack || stack->size < 2)
+		return ;
+	first = stack->head;
+	second = first->next;
+	first->next = second->next;
+	if (second->next)
+		second->next->prev = first;
+	second->next = first;
+	first->prev = second;
+	stack->head = second;
+	if (stack->size == 2)
+		stack->tail = first;
+}
+
+void	push(t_stack *dest, t_stack *src)
+{
+	t_node	*first;
+	t_node	*second;
+
+	first = src->head;
+	second = first->next;
+	if (!src || !src->head)
+		return ;
+	if (src->head == src->tail)
+	{
+		src->head = NULL;
+		src->tail = NULL;
+		src->size = 0;
+	}
+	else
+	{
+		src->head = second;
+		src->tail->next = second;
+		second->prev = src->tail;
+		src->size--;
+	}
+	add_node_into_stack(dest, first);
+}
 
