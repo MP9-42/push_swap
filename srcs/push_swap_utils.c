@@ -6,7 +6,7 @@
 /*   By: MP9 <mikjimen@student.42heilbronn.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/25 20:31:24 by MP9               #+#    #+#             */
-/*   Updated: 2025/09/11 00:10:43 by MP9              ###   ########.fr       */
+/*   Updated: 2025/09/14 18:24:53 by MP9              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ long	ft_atoli(char *str)
 		str++;
 	}
 	if ((prepoc * number) < INT_MIN || (prepoc * number) > INT_MAX)
-		return (0);
+		return (ft_printf("%s", ERROR_MSG));
 	return (prepoc * number);
 }
 

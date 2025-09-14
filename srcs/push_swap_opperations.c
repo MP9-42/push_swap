@@ -6,7 +6,7 @@
 /*   By: MP9 <mikjimen@student.42heilbronn.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/09 17:40:41 by MP9               #+#    #+#             */
-/*   Updated: 2025/09/12 19:32:51 by MP9              ###   ########.fr       */
+/*   Updated: 2025/09/14 17:35:41 by MP9              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,8 @@ void	push(t_stack *dest, t_stack *src)
 	}
 	else
 	{
+		first->next = NULL;
+		first->prev = NULL;
 		src->head = second;
 		src->tail->next = second;
 		second->prev = src->tail;

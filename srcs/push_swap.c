@@ -6,7 +6,7 @@
 /*   By: MP9 <mikjimen@student.42heilbronn.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/23 21:25:11 by MP9               #+#    #+#             */
-/*   Updated: 2025/09/12 19:33:52 by MP9              ###   ########.fr       */
+/*   Updated: 2025/09/14 18:52:08 by MP9              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,33 +50,17 @@ int	main(int argc, char **argv)
 
 	stack_a = create_empty_stack();
 	stack_b = create_empty_stack();
-	if (stack_a == NULL || stack_b == NULL)
-	{
-		
-	}
-	// t_sort			*list;
-	// t_stack_old			*next_a;
-	// t_stack_old			*next_b;
 	numbers = error_handle(argv, argc);
 	numbers = stackerror(argv, numbers);
 	len = ft_stack_oldlen(numbers);
 	sorted_nums = error_handle(argv, argc);
 	sorted_nums = stackerror(argv, sorted_nums);
 	sorted_nums = sort_array(sorted_nums, len);
+	// print_array(sorted_nums, "sorted_nums");
 	build_stack(stack_a, numbers, sorted_nums);
-	print_stack(stack_a);
-	push(stack_b, stack_a);
-	print_stack(stack_a);
-	print_stack(stack_b);
-	// list = create_stacks(numbers);
-	// next_a = list->stack_a;
-	// next_b = list->stack_b;
-	// next_a = rrotate(next_a);
-	// i = 0;
-	// while (sorted_nums[i] != '\0')
-	// {
-	// 	ft_printf("sorted_nums: %i\n", sorted_nums[i]);
-	// 	i++;
-	// }
+	k_sort(stack_a, stack_b);
+	// print_stack(stack_a);
+	// print_stack(stack_b);
+	free_all(stack_a, stack_b, numbers, sorted_nums);
 	return (0);
 }

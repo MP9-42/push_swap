@@ -6,7 +6,7 @@
 /*   By: MP9 <mikjimen@student.42heilbronn.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/23 21:25:25 by MP9               #+#    #+#             */
-/*   Updated: 2025/09/12 19:33:00 by MP9              ###   ########.fr       */
+/*   Updated: 2025/09/14 18:10:59 by MP9              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ int		ft_stack_oldlen(int *stack);
 void	print_stack(t_stack *stack);
 char	**check_dup(char **matrix);
 void	free_node(t_node *node);
+void	free_all(t_stack *a, t_stack *b, int *nums, int *sorted_nums);
 
 //stack creation
 t_stack	*create_empty_stack(void);
@@ -68,7 +69,8 @@ void	rrotate(t_stack *stack);
 void	swap(t_stack *stack);
 void	push(t_stack *dest, t_stack *src);
 //algorithm
-
+void	k_sort(t_stack *a, t_stack *b);
+int		find_max_bits(t_stack *a);
 
 //print array int
 void	print_array(int *array_num, char *name_array);
