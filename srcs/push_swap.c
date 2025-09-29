@@ -6,7 +6,7 @@
 /*   By: MP9 <mikjimen@student.42heilbronn.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/23 21:25:11 by MP9               #+#    #+#             */
-/*   Updated: 2025/09/14 18:52:08 by MP9              ###   ########.fr       */
+/*   Updated: 2025/09/24 18:00:43 by MP9              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,11 +56,10 @@ int	main(int argc, char **argv)
 	sorted_nums = error_handle(argv, argc);
 	sorted_nums = stackerror(argv, sorted_nums);
 	sorted_nums = sort_array(sorted_nums, len);
-	// print_array(sorted_nums, "sorted_nums");
 	build_stack(stack_a, numbers, sorted_nums);
 	k_sort(stack_a, stack_b);
-	// print_stack(stack_a);
-	// print_stack(stack_b);
+	print_stack(stack_a);
+	print_stack(stack_b);
 	free_all(stack_a, stack_b, numbers, sorted_nums);
 	return (0);
 }
