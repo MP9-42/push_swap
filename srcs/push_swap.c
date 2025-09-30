@@ -6,7 +6,7 @@
 /*   By: MP9 <mikjimen@student.42heilbronn.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/23 21:25:11 by MP9               #+#    #+#             */
-/*   Updated: 2025/09/24 18:00:43 by MP9              ###   ########.fr       */
+/*   Updated: 2025/09/30 02:10:53 by MP9              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,15 @@ int	*sort_array(int *array_num, int len)
 	return (array_num);
 }
 
+char	*ft_joinnfree(char *joinstr, const char *s2)
+{
+	char	*newstr;
+
+	newstr = ft_inputjoin(joinstr, s2);
+	free(joinstr);
+	return (newstr);
+}
+
 int	main(int argc, char **argv)
 {
 	int		*numbers;
@@ -59,7 +68,7 @@ int	main(int argc, char **argv)
 	build_stack(stack_a, numbers, sorted_nums);
 	k_sort(stack_a, stack_b);
 	print_stack(stack_a);
-	print_stack(stack_b);
+	// print_stack(stack_b);
 	free_all(stack_a, stack_b, numbers, sorted_nums);
 	return (0);
 }

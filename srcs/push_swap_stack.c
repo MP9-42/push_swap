@@ -6,7 +6,7 @@
 /*   By: MP9 <mikjimen@student.42heilbronn.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/11 14:22:41 by MP9               #+#    #+#             */
-/*   Updated: 2025/09/11 18:25:05 by MP9              ###   ########.fr       */
+/*   Updated: 2025/09/30 01:59:12 by MP9              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ t_node	*create_node(int value, int index)
 	node = (t_node *)malloc(sizeof(t_node));
 	if (!node)
 	{
-		free_node(node);
+		free(node);
 		exit(ft_printf("%s", ERROR_MSG));
 	}
 	node->next = NULL;
@@ -77,7 +77,7 @@ t_stack	*create_empty_stack(void)
 {
 	t_stack	*stack;
 
-	stack = malloc(1 * sizeof(t_stack));
+	stack = malloc(sizeof(t_stack) * 1);
 	if (stack == NULL)
 		exit(ft_printf("%s", ERROR_MSG));
 	stack->head = NULL;
@@ -88,11 +88,11 @@ t_stack	*create_empty_stack(void)
 
 void	free_node(t_node *node)
 {
-	while (node->next || node->prev)
+	if (node->next || node->prev)
 	{
 		free(node->next);
 		node = node->prev;
 	}
-	if (!node->next || !node->prev)
+	else
 		free(node);
 }

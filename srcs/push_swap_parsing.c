@@ -6,7 +6,7 @@
 /*   By: MP9 <mikjimen@student.42heilbronn.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/29 18:51:52 by MP9               #+#    #+#             */
-/*   Updated: 2025/09/12 19:35:36 by MP9              ###   ########.fr       */
+/*   Updated: 2025/09/30 02:14:03 by MP9              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ char	*take_input(char **argv, int argc)
 		while (argv[argi + 1] != NULL)
 		{
 			argi++;
-			numbers = ft_inputjoin(numbers, argv[argi]);
+			numbers = ft_joinnfree(numbers, argv[argi]);
 		}
 	}
 	else if (argc == 2)

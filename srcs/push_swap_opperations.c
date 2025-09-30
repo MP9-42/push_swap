@@ -6,7 +6,7 @@
 /*   By: MP9 <mikjimen@student.42heilbronn.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/09 17:40:41 by MP9               #+#    #+#             */
-/*   Updated: 2025/09/14 17:35:41 by MP9              ###   ########.fr       */
+/*   Updated: 2025/09/29 22:12:00 by MP9              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,15 @@ void	rotate(t_stack *stack)
 	if (!stack || stack->size < 2)
 		return ;
 	stack->head = stack->head->next;
+	stack->tail = stack->tail->next;
 }
 
 void	rrotate(t_stack *stack)
 {
 	if (!stack || stack->size < 2)
 		return ;
-	stack->head = stack->tail;
+	stack->head = stack->head->prev;
+	stack->tail = stack->tail->prev;
 }
 
 void	swap(t_stack *stack)
@@ -71,4 +73,3 @@ void	push(t_stack *dest, t_stack *src)
 	}
 	add_node_into_stack(dest, first);
 }
-

@@ -6,7 +6,7 @@
 /*   By: MP9 <mikjimen@student.42heilbronn.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/23 21:25:25 by MP9               #+#    #+#             */
-/*   Updated: 2025/09/24 17:59:52 by MP9              ###   ########.fr       */
+/*   Updated: 2025/09/30 02:14:23 by MP9              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,9 @@ int		ft_stack_oldlen(int *stack);
 void	print_stack(t_stack *stack);
 char	**check_dup(char **matrix);
 int		distance(t_stack *stack);
-void	free_node(t_node *node);
+void	free_stack(t_stack *stack);
 void	free_all(t_stack *a, t_stack *b, int *nums, int *sorted_nums);
+char	*ft_joinnfree(char *joinstr, const char *s2);
 
 //stack creation
 t_stack	*create_empty_stack(void);
@@ -71,7 +72,7 @@ void	swap(t_stack *stack);
 void	push(t_stack *dest, t_stack *src);
 //algorithm
 void	k_sort(t_stack *a, t_stack *b);
-void	k_support(t_stack *a, t_stack *b, int count, int range);
+void	k_support(t_stack *a, t_stack *b, int *count, int range);
 void	push_back(t_stack *stack_a, t_stack *stack_b);
 
 //print array int

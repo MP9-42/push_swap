@@ -6,12 +6,11 @@
 /*   By: MP9 <mikjimen@student.42heilbronn.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/03 04:07:51 by MP9               #+#    #+#             */
-/*   Updated: 2025/09/29 18:42:41 by MP9              ###   ########.fr       */
+/*   Updated: 2025/09/30 01:58:17 by MP9              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
-
 
 void	print_stack(t_stack *stack)
 {
@@ -43,29 +42,50 @@ void	print_array(int *array_num, char *name_array)
 
 void	free_all(t_stack *a, t_stack *b, int *nums, int *sorted_nums)
 {
-	while (a->head != NULL)
-	{
-		free_node(a->head);
-		a->head = a->head->next;
-	}
-	while (b->head != NULL)
-	{
-		free_node(b->head);
-		b->head = b->head->next;
-	}
+	free_stack(a);
+	free_stack(b);
+	free(a);
+	free(b);
 	free(nums);
 	free(sorted_nums);
 }
 
 int	distance(t_stack *stack)
 {
-	int	counter;
+	int		counter;
+	t_node	*current;
 
+	if (!stack || !stack->head)
+		return (0);
 	counter = 0;
-	while (stack->head && stack->head->index != stack->size)
+	current = stack->head;
+	while (current->index != stack->size)
 	{
-		stack->head = stack->head->next;
+		current = current -> next;
 		counter++;
+		if (current == stack->head)
+			return (-1);
 	}
 	return (counter);
+}
+
+void	free_stack(t_stack *stack)
+{
+	t_node	*current;
+	t_node	*next;
+	int		i;
+
+	i = 0;
+	if (!stack || !stack->head)
+		return ;
+	current = stack->head;
+	while (i < stack->size)
+	{
+		next = current->next;
+		free(current);
+		current = next;
+		i++;
+	}
+	stack->head = NULL;
+	stack->size = 0;
 }
