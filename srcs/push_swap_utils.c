@@ -6,22 +6,20 @@
 /*   By: MP9 <mikjimen@student.42heilbronn.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/25 20:31:24 by MP9               #+#    #+#             */
-/*   Updated: 2025/09/30 00:56:15 by MP9              ###   ########.fr       */
+/*   Updated: 2025/10/01 15:16:02 by MP9              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-int	ft_stack_oldlen(int *numbers)
+int	ft_stack_oldlen(char **numbers)
 {
 	int	i;
 
 	if (!numbers)
 		return (0);
 	i = 0;
-	if (numbers[i] == '\0')
-		i++;
-	while (numbers[i] != '\0')
+	while (numbers[i] != NULL)
 		i++;
 	return (i);
 }
@@ -43,14 +41,23 @@ long	ft_atoli(char *str)
 			prepoc = prepoc * (-1);
 		str++;
 	}
+	if (*str == '+' || *str == '-')
+		exit(printf("%s", ERROR_MSG));
+	ft_atoli_support(str, &number, &prepoc);
+	return (prepoc * number);
+}
+
+void	ft_atoli_support(char *str, long *number, long *prepoc)
+{
 	while (*str >= '0' && *str <= '9')
 	{
-		number = number * 10 + (*str - '0');
+		*number = *number * 10 + (*str - '0');
 		str++;
+		if (*str == '+' || *str == '-')
+			exit(printf("%s", ERROR_MSG));
 	}
-	if ((prepoc * number) < INT_MIN || (prepoc * number) > INT_MAX)
-		return (ft_printf("%s", ERROR_MSG));
-	return (prepoc * number);
+	if ((*prepoc * *number) < INT_MIN || (*prepoc * *number) > INT_MAX)
+		exit(ft_printf("%s", ERROR_MSG));
 }
 
 char	*ft_inputjoin(char const *s1, char const *s2)
@@ -82,35 +89,11 @@ char	*ft_inputjoin(char const *s1, char const *s2)
 	return (joinstr);
 }
 
-char	**check_dup(char **matrix)
+void	check_dup(char **matrix)
 {
-	int	i;
-	int	i2;
-
-	i = 0;
-	while (matrix[i] != NULL)
+	if (ft_numcmp(matrix) == 1)
 	{
-		(i2 = i + 1);
-		while (matrix[i2] != NULL)
-		{
-			if (ft_strncmp(matrix[i], matrix[i2], 12) == 0)
-			{
-				free_matrix(matrix);
-				exit(ft_printf("%s", ERROR_MSG));
-			}
-			i2++;
-		}
-		i++;
+		free_matrix(matrix);
+		exit(ft_printf("%s", ERROR_MSG));
 	}
-	return (matrix);
-}
-
-void	free_matrix(char **matrix)
-{
-	int	i;
-
-	i = 0;
-	while (matrix[i])
-		free(matrix[i++]);
-	free(matrix);
 }

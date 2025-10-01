@@ -6,13 +6,13 @@
 /*   By: MP9 <mikjimen@student.42heilbronn.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/11 14:22:41 by MP9               #+#    #+#             */
-/*   Updated: 2025/09/30 01:59:12 by MP9              ###   ########.fr       */
+/*   Updated: 2025/10/01 19:24:36 by MP9              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-t_node	*create_node(int value, int index)
+t_node	*create_node(char *value, int index)
 {
 	t_node	*node;
 
@@ -24,7 +24,7 @@ t_node	*create_node(int value, int index)
 	}
 	node->next = NULL;
 	node->prev = NULL;
-	node->value = value;
+	node->value = ft_atoli(value);
 	node->index = index;
 	return (node);
 }
@@ -49,20 +49,20 @@ void	add_node_into_stack(t_stack *stack, t_node *node)
 	stack->size++;
 }
 
-void	build_stack(t_stack *stack_a, int *numbers, int *sorted_nums)
+void	build_stack(t_stack *stack_a, char **numbers, char **sorted_nums)
 {
 	int		ni;
 	int		si;
 	t_node	*node;
 
-	ni = ft_stack_oldlen(numbers);
+	ni = ft_stack_oldlen(numbers) - 1;
 	node = NULL;
 	while (ni != -1)
 	{
 		si = 0;
-		while (sorted_nums[si] != '\0')
+		while (sorted_nums[si] != NULL)
 		{
-			if (numbers[ni] == sorted_nums[si])
+			if (ft_strcmp(numbers[ni], sorted_nums[si]) == 0)
 			{
 				node = create_node(numbers[ni], si);
 				add_node_into_stack(stack_a, node);

@@ -6,38 +6,62 @@
 /*   By: MP9 <mikjimen@student.42heilbronn.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/23 21:25:11 by MP9               #+#    #+#             */
-/*   Updated: 2025/09/30 02:10:53 by MP9              ###   ########.fr       */
+/*   Updated: 2025/10/01 19:26:15 by MP9              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-int	*sort_array(int *array_num, int len)
+char	**sort_array(char **nums, int len)
 {
-	int	n;
-	int	swapped;
-	int	j;
-	int	temp;
+	int		swapped;
+	int		j;
+	char	*temp;
+	int		a;
+	int		b;
 
-	n = len;
 	swapped = 1;
 	while (swapped)
 	{
 		swapped = 0;
 		j = 0;
-		while (j < n - 1)
+		while (j < len && nums[j + 1] != NULL)
 		{
-			if (array_num[j] > array_num[j + 1])
-			{
-				temp = array_num[j];
-				array_num[j] = array_num[j + 1];
-				array_num[j + 1] = temp;
-				swapped = 1;
-			}
+			a = ft_atoli(nums[j]);
+			b = ft_atoli(nums[j + 1]);
+			temp = "\0";
+			if (a > b)
+				sort_array_support(&nums[j], &nums[j + 1], temp, &swapped);
 			j++;
 		}
 	}
-	return (array_num);
+	return (nums);
+}
+
+void	sort_array_support(char **num, char **nxt_num, char *temp, int *swap)
+{
+	temp = *num;
+	*num = *nxt_num;
+	*nxt_num = temp;
+	*swap = 1;
+}
+
+int	ft_numcmp(char **numbers)
+{
+	size_t	i;
+	size_t	i2;
+
+	i = 0;
+	while (numbers[i])
+	{
+		i2 = i + 1;
+		while (numbers[i] != numbers[i2] && numbers[i2] != NULL)
+			i2++;
+		if (numbers[i] == numbers[i2])
+			return (1);
+		i++;
+	}
+	return (0);
 }
 
 char	*ft_joinnfree(char *joinstr, const char *s2)
@@ -51,8 +75,8 @@ char	*ft_joinnfree(char *joinstr, const char *s2)
 
 int	main(int argc, char **argv)
 {
-	int		*numbers;
-	int		*sorted_nums;
+	char	**numbers;
+	char	**sorted_nums;
 	int		len;
 	t_stack	*stack_a;
 	t_stack	*stack_b;
@@ -60,15 +84,16 @@ int	main(int argc, char **argv)
 	stack_a = create_empty_stack();
 	stack_b = create_empty_stack();
 	numbers = error_handle(argv, argc);
-	numbers = stackerror(argv, numbers);
-	len = ft_stack_oldlen(numbers);
 	sorted_nums = error_handle(argv, argc);
-	sorted_nums = stackerror(argv, sorted_nums);
+	len = ft_stack_oldlen(sorted_nums);
 	sorted_nums = sort_array(sorted_nums, len);
 	build_stack(stack_a, numbers, sorted_nums);
-	k_sort(stack_a, stack_b);
-	print_stack(stack_a);
-	// print_stack(stack_b);
+	if (check_sort(stack_a) == 1)
+	{
+		free_all(stack_a, stack_b, numbers, sorted_nums);
+		return (0);
+	}
+	radix_sort(stack_a, stack_b);
 	free_all(stack_a, stack_b, numbers, sorted_nums);
 	return (0);
 }

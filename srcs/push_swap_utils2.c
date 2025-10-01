@@ -6,7 +6,7 @@
 /*   By: MP9 <mikjimen@student.42heilbronn.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/03 04:07:51 by MP9               #+#    #+#             */
-/*   Updated: 2025/09/30 01:58:17 by MP9              ###   ########.fr       */
+/*   Updated: 2025/10/01 14:57:47 by MP9              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,45 +28,24 @@ void	print_stack(t_stack *stack)
 	}
 }
 
-void	print_array(int *array_num, char *name_array)
-{
-	int	i;
-
-	i = 0;
-	while (array_num[i] != '\0')
-	{
-		ft_printf("%s[%d]: %d\n", name_array, i, array_num[i]);
-		i++;
-	}
-}
-
-void	free_all(t_stack *a, t_stack *b, int *nums, int *sorted_nums)
+void	free_all(t_stack *a, t_stack *b, char **numbers, char **sorted_nums)
 {
 	free_stack(a);
 	free_stack(b);
 	free(a);
 	free(b);
-	free(nums);
-	free(sorted_nums);
+	free_matrix(numbers);
+	free_matrix(sorted_nums);
 }
 
-int	distance(t_stack *stack)
+void	free_matrix(char **matrix)
 {
-	int		counter;
-	t_node	*current;
+	int	i;
 
-	if (!stack || !stack->head)
-		return (0);
-	counter = 0;
-	current = stack->head;
-	while (current->index != stack->size)
-	{
-		current = current -> next;
-		counter++;
-		if (current == stack->head)
-			return (-1);
-	}
-	return (counter);
+	i = 0;
+	while (matrix[i])
+		free(matrix[i++]);
+	free(matrix);
 }
 
 void	free_stack(t_stack *stack)

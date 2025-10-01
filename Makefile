@@ -6,7 +6,7 @@
 #    By: MP9 <mikjimen@student.42heilbronn.de>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/08/23 21:24:53 by MP9               #+#    #+#              #
-#    Updated: 2025/09/14 17:39:20 by MP9              ###   ########.fr        #
+#    Updated: 2025/09/30 22:42:52 by MP9              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,7 @@ all : $(LIBFT) $(NAME)
 $(NAME): $(OBJS)
 		$(CC) $(CFLAGS) $(OBJS) $(LIBFT) -o $(NAME)
 
-$(OBJ_DIR)/%.o: srcs/%.c includes/*.h
+$(OBJ_DIR)/%.o: srcs/%.c includes/push_swap.h
 	@mkdir -p $(OBJ_DIR)
 	$(CC) $(CFLAGS) -c $< -o $@
 

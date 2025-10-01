@@ -6,50 +6,36 @@
 /*   By: MP9 <mikjimen@student.42heilbronn.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/29 18:51:52 by MP9               #+#    #+#             */
-/*   Updated: 2025/09/30 02:14:03 by MP9              ###   ########.fr       */
+/*   Updated: 2025/10/01 16:23:28 by MP9              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-int	*get_nums(char **bigstr)
+void	get_nums(char **bigstr)
 {
-	int	*stack_a;
-	int	i;
-
-	i = 0;
-	while (bigstr[i] != NULL)
-		i++;
-	stack_a = (int *)malloc(sizeof(int) * i + 1);
-	if (!stack_a)
-		return (NULL);
-	i = 0;
-	while (bigstr[i] != NULL)
+	if (ft_numcmp(bigstr) == 1)
 	{
-		stack_a[i] = ft_atoli(bigstr[i]);
-		i++;
+		free_matrix(bigstr);
+		exit(ft_printf("%s", ERROR_MSG));
 	}
-	stack_a[i] = '\0';
-	return (stack_a);
 }
 
-int	*error_handle(char **argv, int argc)
+char	**error_handle(char **argv, int argc)
 {
 	char	**bigstr;
 	char	*input;
-	int		*numbers;
 
 	input = take_input(argv, argc);
 	bigstr = ft_split(input, ' ');
-	bigstr = check_dup(bigstr);
-	bigstr = error_handle2(bigstr);
-	numbers = get_nums(bigstr);
 	free(input);
-	free_matrix(bigstr);
-	return (numbers);
+	check_dup(bigstr);
+	error_handle2(bigstr);
+	get_nums(bigstr);
+	return (bigstr);
 }
 
-char	**error_handle2(char **bigstr)
+void	error_handle2(char **bigstr)
 {
 	int		bi;
 	int		si;
@@ -71,7 +57,6 @@ char	**error_handle2(char **bigstr)
 		}
 		bi++;
 	}
-	return (bigstr);
 }
 
 char	*take_input(char **argv, int argc)
@@ -82,7 +67,7 @@ char	*take_input(char **argv, int argc)
 	argi = 1;
 	numbers = NULL;
 	if (argc <= 1)
-		exit(ft_printf("%s", ERROR_MSG));
+		exit(1);
 	else if (argc >= 3)
 	{
 		numbers = ft_inputjoin(argv[argi], argv[argi + 1]);
@@ -101,15 +86,4 @@ char	*take_input(char **argv, int argc)
 		ft_strlcpy(numbers, argv[argi], ft_strlen(argv[argi]) + 1);
 	}
 	return (numbers);
-}
-
-int	*stackerror(char **matrix, int *numbers)
-{
-	if (!numbers)
-	{
-		free_matrix(matrix);
-		exit(ft_printf("%s", ERROR_MSG));
-	}
-	else
-		return (numbers);
 }

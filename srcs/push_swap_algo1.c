@@ -6,69 +6,73 @@
 /*   By: MP9 <mikjimen@student.42heilbronn.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/23 22:14:26 by MP9               #+#    #+#             */
-/*   Updated: 2025/09/30 02:06:50 by MP9              ###   ########.fr       */
+/*   Updated: 2025/09/30 21:46:31 by MP9              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-void	k_sort(t_stack *a, t_stack *b)
+void	radix_sort(t_stack *a, t_stack *b)
 {
-	int	count;
-	int	range;
+	int	size;
+	int	max_idx;
+	int	max_bits;
+	int	i;
 
-	count = 0;
-	range = ft_sqrt(a->size) * 1.6;
-	while (a->size > 0)
+	if (!a || a->size <= 1)
+		return ;
+	size = a->size;
+	max_idx = a->size - 1;
+	max_bits = 0;
+	while ((max_idx >> max_bits) != 0)
+		max_bits++;
+	i = 0;
+	while (i < max_bits)
 	{
-		if (a->head->index <= count)
+		radix_support(a, b, &i, &size);
+	}
+}
+
+void	radix_support(t_stack *a, t_stack *b, int *i, int *size)
+{
+	int	j;
+
+	j = 0;
+	while (j < *size)
+	{
+		if (((a->head->index >> *i) & 1) == 0)
 		{
 			push(b, a);
 			ft_printf("pb\n");
-			rotate(b);
-			ft_printf("rb\n");
-			count++;
-		}
-		else
-			k_support(a, b, &count, range);
-	}
-	push_back(a, b);
-}
-
-void	push_back(t_stack *stack_a, t_stack *stack_b)
-{
-	while (stack_b->size > 0)
-	{
-		if (stack_b->head->index == stack_b->size - 1)
-		{
-			push(stack_a, stack_b);
-			ft_printf("pa\n");
-		}
-		else if (distance(stack_b) < stack_b->size / 2)
-		{
-			rotate(stack_b);
-			ft_printf("rb\n");
 		}
 		else
 		{
-			rrotate(stack_b);
-			ft_printf("rrb\n");
+			rotate(a);
+			ft_printf("ra\n");
 		}
-
+		j++;
 	}
+	while (b->size > 0)
+	{
+		push(a, b);
+		ft_printf("pa\n");
+	}
+	(*i)++;
 }
 
-void	k_support(t_stack *a, t_stack *b, int *count, int range)
+int	check_sort(t_stack *stack)
 {
-	if (a->head->index < *count + range)
+	t_node	*temp;
+	int		counter;
+
+	counter = 0;
+	temp = stack->head;
+	while (temp->next && counter != stack->size - 1)
 	{
-		push(b, a);
-		ft_printf("pb\n");
-		(*count)++;
+		if (temp->value > temp->next->value)
+			return (0);
+		temp = temp->next;
+		counter++;
 	}
-	else
-	{
-		rotate(a);
-		ft_printf("ra\n");
-	}
+	return (1);
 }
