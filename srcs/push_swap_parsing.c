@@ -6,20 +6,11 @@
 /*   By: MP9 <mikjimen@student.42heilbronn.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/29 18:51:52 by MP9               #+#    #+#             */
-/*   Updated: 2025/10/01 16:23:28 by MP9              ###   ########.fr       */
+/*   Updated: 2025/10/04 04:57:04 by MP9              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
-
-void	get_nums(char **bigstr)
-{
-	if (ft_numcmp(bigstr) == 1)
-	{
-		free_matrix(bigstr);
-		exit(ft_printf("%s", ERROR_MSG));
-	}
-}
 
 char	**error_handle(char **argv, int argc)
 {
@@ -29,9 +20,7 @@ char	**error_handle(char **argv, int argc)
 	input = take_input(argv, argc);
 	bigstr = ft_split(input, ' ');
 	free(input);
-	check_dup(bigstr);
 	error_handle2(bigstr);
-	get_nums(bigstr);
 	return (bigstr);
 }
 

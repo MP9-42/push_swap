@@ -6,7 +6,7 @@
 /*   By: MP9 <mikjimen@student.42heilbronn.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/23 21:25:25 by MP9               #+#    #+#             */
-/*   Updated: 2025/10/01 19:00:23 by MP9              ###   ########.fr       */
+/*   Updated: 2025/10/04 05:34:00 by MP9              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,11 +43,11 @@ typedef struct s_stack
 void	free_matrix(char **matrix);
 void	*ft_memmove(void *dst, const void *src, size_t len);
 long	ft_atoli(char *str);
-void	ft_atoli_support(char *str, long *number, long *prepoc);
+long	ft_atoli_support(char *str, long *number, long *prepoc);
 char	*ft_inputjoin(char const *s1, char const *s2);
 int		ft_stack_oldlen(char **numbers);
 void	print_stack(t_stack *stack);
-void	check_dup(char **matrix);
+int		check_dup(t_stack *stack);
 int		ft_numcmp(char **numbers);
 void	free_stack(t_stack *stack);
 void	free_all(t_stack *a, t_stack *b, char **nums, char **sorted_nums);
@@ -56,7 +56,7 @@ char	*ft_joinnfree(char *joinstr, const char *s2);
 //stack creation
 t_stack	*create_empty_stack(void);
 void	add_node_into_stack(t_stack *stack, t_node *node);
-void	build_stack(t_stack *stack_a, char **numbers, char **sorted_nums);
+void	build_stack(t_stack *a, t_stack *b, char **nums, char **s_nums);
 t_node	*create_node(char *value, int index);
 
 //parsing

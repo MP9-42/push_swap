@@ -6,7 +6,7 @@
 /*   By: MP9 <mikjimen@student.42heilbronn.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/25 20:31:24 by MP9               #+#    #+#             */
-/*   Updated: 2025/10/01 15:16:02 by MP9              ###   ########.fr       */
+/*   Updated: 2025/10/04 05:27:06 by MP9              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ long	ft_atoli(char *str)
 	number = 0;
 	prepoc = 1;
 	if (ft_strlen(str) > 11)
-		return (0);
+		return (INT_MIN + 1);
 	while ((*str >= 9 && *str <= 13) || *str == 32)
 		str++;
 	if (*str == '+' || *str == '-')
@@ -42,22 +42,22 @@ long	ft_atoli(char *str)
 		str++;
 	}
 	if (*str == '+' || *str == '-')
-		exit(printf("%s", ERROR_MSG));
-	ft_atoli_support(str, &number, &prepoc);
-	return (prepoc * number);
+		return (INT_MIN + 1);
+	return (ft_atoli_support(str, &number, &prepoc));
 }
 
-void	ft_atoli_support(char *str, long *number, long *prepoc)
+long	ft_atoli_support(char *str, long *number, long *prepoc)
 {
 	while (*str >= '0' && *str <= '9')
 	{
 		*number = *number * 10 + (*str - '0');
 		str++;
 		if (*str == '+' || *str == '-')
-			exit(printf("%s", ERROR_MSG));
+			return (INT_MIN + 1);
 	}
 	if ((*prepoc * *number) < INT_MIN || (*prepoc * *number) > INT_MAX)
-		exit(ft_printf("%s", ERROR_MSG));
+		return (INT_MIN + 1);
+	return (*prepoc * *number);
 }
 
 char	*ft_inputjoin(char const *s1, char const *s2)
@@ -89,11 +89,30 @@ char	*ft_inputjoin(char const *s1, char const *s2)
 	return (joinstr);
 }
 
-void	check_dup(char **matrix)
+int	check_dup(t_stack *stack)
 {
-	if (ft_numcmp(matrix) == 1)
+	t_node	*current;
+	t_node	*compare;
+	int		i;
+	int		i2;
+
+	i = stack->size - 1;
+	if (!stack)
+		return (1);
+	current = stack->head;
+	while (i > 0)
 	{
-		free_matrix(matrix);
-		exit(ft_printf("%s", ERROR_MSG));
+		compare = current->next;
+		i2 = i - 1;
+		while (i2 > 0)
+		{
+			if (compare->value == current->value)
+				return (1);
+			compare = compare->next;
+			i2--;
+		}
+		current = current->next;
+		i--;
 	}
+	return (0);
 }

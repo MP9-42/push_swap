@@ -6,7 +6,7 @@
 /*   By: MP9 <mikjimen@student.42heilbronn.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/23 22:14:26 by MP9               #+#    #+#             */
-/*   Updated: 2025/09/30 21:46:31 by MP9              ###   ########.fr       */
+/*   Updated: 2025/10/04 02:51:56 by MP9              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,7 @@ void	radix_sort(t_stack *a, t_stack *b)
 		max_bits++;
 	i = 0;
 	while (i < max_bits)
-	{
 		radix_support(a, b, &i, &size);
-	}
 }
 
 void	radix_support(t_stack *a, t_stack *b, int *i, int *size)

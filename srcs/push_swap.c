@@ -6,7 +6,7 @@
 /*   By: MP9 <mikjimen@student.42heilbronn.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/23 21:25:11 by MP9               #+#    #+#             */
-/*   Updated: 2025/10/01 19:26:15 by MP9              ###   ########.fr       */
+/*   Updated: 2025/10/04 06:00:27 by MP9              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,22 +46,13 @@ void	sort_array_support(char **num, char **nxt_num, char *temp, int *swap)
 	*swap = 1;
 }
 
-int	ft_numcmp(char **numbers)
+void	error_case(t_stack *a, t_stack *b, char **numbers, char **sorted_nums)
 {
-	size_t	i;
-	size_t	i2;
-
-	i = 0;
-	while (numbers[i])
+	if (check_dup(a) == 1)
 	{
-		i2 = i + 1;
-		while (numbers[i] != numbers[i2] && numbers[i2] != NULL)
-			i2++;
-		if (numbers[i] == numbers[i2])
-			return (1);
-		i++;
+		free_all(a, b, numbers, sorted_nums);
+		exit(ft_printf("%s", ERROR_MSG));
 	}
-	return (0);
 }
 
 char	*ft_joinnfree(char *joinstr, const char *s2)
@@ -87,12 +78,13 @@ int	main(int argc, char **argv)
 	sorted_nums = error_handle(argv, argc);
 	len = ft_stack_oldlen(sorted_nums);
 	sorted_nums = sort_array(sorted_nums, len);
-	build_stack(stack_a, numbers, sorted_nums);
+	build_stack(stack_a, stack_b, numbers, sorted_nums);
 	if (check_sort(stack_a) == 1)
 	{
 		free_all(stack_a, stack_b, numbers, sorted_nums);
 		return (0);
 	}
+	error_case(stack_a, stack_b, numbers, sorted_nums);
 	radix_sort(stack_a, stack_b);
 	free_all(stack_a, stack_b, numbers, sorted_nums);
 	return (0);

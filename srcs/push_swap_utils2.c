@@ -6,7 +6,7 @@
 /*   By: MP9 <mikjimen@student.42heilbronn.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/03 04:07:51 by MP9               #+#    #+#             */
-/*   Updated: 2025/10/01 14:57:47 by MP9              ###   ########.fr       */
+/*   Updated: 2025/10/04 05:45:18 by MP9              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,18 @@ void	print_stack(t_stack *stack)
 
 void	free_all(t_stack *a, t_stack *b, char **numbers, char **sorted_nums)
 {
-	free_stack(a);
-	free_stack(b);
-	free(a);
-	free(b);
-	free_matrix(numbers);
-	free_matrix(sorted_nums);
+	if (a && b)
+	{
+		free_stack(a);
+		free_stack(b);
+		free(a);
+		free(b);
+	}
+	if (numbers && sorted_nums)
+	{
+		free_matrix(numbers);
+		free_matrix(sorted_nums);
+	}
 }
 
 void	free_matrix(char **matrix)

@@ -6,7 +6,7 @@
 /*   By: MP9 <mikjimen@student.42heilbronn.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/11 14:22:41 by MP9               #+#    #+#             */
-/*   Updated: 2025/10/01 19:24:36 by MP9              ###   ########.fr       */
+/*   Updated: 2025/10/04 05:46:23 by MP9              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,16 @@ t_node	*create_node(char *value, int index)
 	if (!node)
 	{
 		free(node);
-		exit(ft_printf("%s", ERROR_MSG));
+		return (NULL);
 	}
 	node->next = NULL;
 	node->prev = NULL;
 	node->value = ft_atoli(value);
+	if (ft_atoli(value) == INT_MIN + 1)
+	{
+		free(node);
+		return (NULL);
+	}
 	node->index = index;
 	return (node);
 }
@@ -49,23 +54,28 @@ void	add_node_into_stack(t_stack *stack, t_node *node)
 	stack->size++;
 }
 
-void	build_stack(t_stack *stack_a, char **numbers, char **sorted_nums)
+void	build_stack(t_stack *a, t_stack *b, char **nums, char **s_nums)
 {
 	int		ni;
 	int		si;
 	t_node	*node;
 
-	ni = ft_stack_oldlen(numbers) - 1;
+	ni = ft_stack_oldlen(nums) - 1;
 	node = NULL;
 	while (ni != -1)
 	{
 		si = 0;
-		while (sorted_nums[si] != NULL)
+		while (s_nums[si] != NULL)
 		{
-			if (ft_strcmp(numbers[ni], sorted_nums[si]) == 0)
+			if (ft_strcmp(nums[ni], s_nums[si]) == 0)
 			{
-				node = create_node(numbers[ni], si);
-				add_node_into_stack(stack_a, node);
+				node = create_node(nums[ni], si);
+				if (node == NULL)
+				{
+					free_all(a, b, nums, s_nums);
+					exit(ft_printf("%s", ERROR_MSG));
+				}
+				add_node_into_stack(a, node);
 			}
 			si++;
 		}
@@ -79,7 +89,7 @@ t_stack	*create_empty_stack(void)
 
 	stack = malloc(sizeof(t_stack) * 1);
 	if (stack == NULL)
-		exit(ft_printf("%s", ERROR_MSG));
+		return (NULL);
 	stack->head = NULL;
 	stack->tail = NULL;
 	stack->size = 0;
